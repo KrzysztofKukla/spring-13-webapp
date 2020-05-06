@@ -6,11 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import java.util.Set;
 
 /**
@@ -29,7 +25,8 @@ public class Author extends AbstractEntity {
     private Set<Book> books;
 
     @Builder
-    public Author(String firstName, String lastName, Set<Book> books) {
+    public Author(Long id, String firstName, String lastName, Set<Book> books) {
+        super(id);
         this.firstName = firstName;
         this.lastName = lastName;
         this.books = books;

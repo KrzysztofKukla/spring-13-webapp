@@ -6,9 +6,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -17,7 +14,7 @@ import java.util.Set;
 /**
  * @author Krzysztof Kukla
  */
-@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true )
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @Entity
 @Data
 @NoArgsConstructor
