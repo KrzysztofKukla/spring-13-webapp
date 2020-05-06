@@ -17,7 +17,7 @@ import java.util.Set;
 /**
  * @author Krzysztof Kukla
  */
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true )
 @Entity
 @Data
 @NoArgsConstructor
