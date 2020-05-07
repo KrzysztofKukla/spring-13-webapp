@@ -6,11 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import java.util.HashSet;
+import javax.persistence.ManyToOne;
 import java.util.Set;
 
 /**
@@ -31,14 +32,17 @@ public class Book extends AbstractEntity {
         joinColumns = @JoinColumn(name = "book_id"),
         inverseJoinColumns = @JoinColumn(name = "author_id")
     )
-    private Set<Author> authors = new HashSet<>();
+    private Set<Author> authors;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Publisher publisher;
 
     @Builder
-    public Book(Long id, String title, String isbn, Set<Author> authors) {
-        this.id = id;
+    public Book(String title, String isbn, Set<Author> authors, Publisher publisher) {
         this.title = title;
         this.isbn = isbn;
         this.authors = authors;
+        this.publisher = publisher;
     }
 
 }

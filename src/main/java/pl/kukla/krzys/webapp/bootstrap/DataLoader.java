@@ -6,8 +6,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.kukla.krzys.webapp.domain.Author;
 import pl.kukla.krzys.webapp.domain.Book;
+import pl.kukla.krzys.webapp.domain.Publisher;
 import pl.kukla.krzys.webapp.repository.AuthorRepository;
 import pl.kukla.krzys.webapp.repository.BookRepository;
+import pl.kukla.krzys.webapp.repository.PublisherRepository;
 
 import java.util.HashSet;
 
@@ -21,6 +23,7 @@ public class DataLoader implements CommandLineRunner {
 
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
+    private final PublisherRepository publisherRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -29,6 +32,9 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void addObjects() {
+        Publisher publisher = Publisher.builder().name("first publisher").addressLine("first address").city("Krakow")
+            .state("state").zip("32-089").books(new HashSet<>()).build();
+
         Book book1 = Book.builder().title("title1").isbn("isbn1").authors(new HashSet<>()).build();
         Book book2 = Book.builder().title("title2").isbn("isbn2").authors(new HashSet<>()).build();
 
@@ -37,11 +43,13 @@ public class DataLoader implements CommandLineRunner {
 
         author1.getBooks().add(book1);
         book1.getAuthors().add(author1);
+        book1.setPublisher(publisher);
         authorRepository.save(author1);
         bookRepository.save(book1);
 
         author2.getBooks().add(book2);
         book2.getAuthors().add(author2);
+
         authorRepository.save(author2);
         bookRepository.save(book2);
 
@@ -51,6 +59,8 @@ public class DataLoader implements CommandLineRunner {
     private void clearAll() {
         authorRepository.deleteAll();
         bookRepository.deleteAll();
+        publisherRepository.deleteAll();
+        ;
     }
 
 }

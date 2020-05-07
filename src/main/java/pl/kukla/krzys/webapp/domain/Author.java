@@ -30,8 +30,7 @@ public class Author extends AbstractEntity {
     private Set<Book> books = new HashSet<>();
 
     @Builder
-    public Author(Long id, String firstName, String lastName, Set<Book> books) {
-        super(id);
+    public Author(String firstName, String lastName, Set<Book> books) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.books = books;
